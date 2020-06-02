@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <count-btn @totle = "allClick()"></count-btn>
+        <count-btn @totle = "allClick()"></count-btn>
+        <count-btn @totle = "allClick()"></count-btn>
+        <count-btn @totle = "allClick()"></count-btn>
+        <count-btn @totle = "allClick()"></count-btn>
+        <p>总共点了{{totleC}}次</p>
+    </div>
+    <template id="my_btn">
+        <button @click = "totle()">点击了{{count}}次</button>
+    </template>
+    <script src="js/vue.js"></script>
+    <script>
+        Vue.component('count-btn', {
+            data() {
+                return {
+                    count: 0
+                }
+            },
+            template: '#my_btn',
+            methods: {
+                totle:function(){
+                     this.count +=1;
+                     this.$emit('totle')
+                }
+            }
+        })
+        new Vue({
+            el: '#app',
+            data:{
+                totleC: 0
+            },
+            methods: {
+                allClick:function(){
+                    this.totleC += 1;
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
